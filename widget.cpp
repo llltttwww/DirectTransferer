@@ -38,6 +38,9 @@ QMetaObject::invokeMethod(ui->textResult,"setEnabled",Qt::QueuedConnection,true)
 }
 Widget::~Widget()
 {
+    delete thread;
+    delete audio;
+    delete destinationFile;
     delete ui;
 }
 

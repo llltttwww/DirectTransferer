@@ -11,11 +11,12 @@ int main(int argc, char *argv[])
     TDialogLogin* login=new TDialogLogin;
     if(login->exec()==QDialog::Accepted)
     {
+
         Widget w;
         w.show();
         return a.exec();
     }
-
+    delete login;
 }
 
 
