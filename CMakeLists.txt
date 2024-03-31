@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 
 include_directories("${CMAKE_CURRENT_LIST_DIR}\\external_libs\\pocketsphinx\\include")
 # link_libraries("E:\\Qt projects\\DirectTransfer\\external_libs\\pocketsphinx\\build\\Debug\\pocketsphinx.lib")
@@ -85,6 +86,7 @@ link_directories("${CMAKE_CURRENT_LIST_DIR}\\external_libs\\pocketsphinx\\build\
 
 target_link_libraries(DirectTransfer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries( DirectTransfer PRIVATE "${CMAKE_CURRENT_LIST_DIR}\\external_libs\\pocketsphinx\\build\\Debug\\pocketsphinx.lib")
+target_link_libraries(DirectTransfer PRIVATE Qt6::Multimedia)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
