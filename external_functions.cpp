@@ -12,9 +12,9 @@ std::string voice_transfer(std::string path)
 
     // 创建一个配置对象
     ps_config_t *config = ps_config_init(NULL);
-    ps_config_set_str(config, "hmm", "E:\\pocketsphinx-master\\pocketsphinx_library\\pocketsphinx\\model\\en-us\\en-us");
-    ps_config_set_str(config, "lm", "E:\\pocketsphinx-master\\pocketsphinx_library\\pocketsphinx\\model\\en-us\\en-us.lm.bin");
-    ps_config_set_str(config, "dict", "E:\\pocketsphinx-master\\pocketsphinx_library\\pocketsphinx\\model\\en-us\\cmudict-en-us.dict");
+    ps_config_set_str(config, "hmm", "..\\DirectTransfer\\external_libs\\pocketsphinx\\model\\en-us\\en-us");
+    ps_config_set_str(config, "lm", "..\\DirectTransfer\\external_libs\\pocketsphinx\\model\\en-us\\en-us.lm.bin");
+    ps_config_set_str(config, "dict", "..\\DirectTransfer\\external_libs\\pocketsphinx\\model\\en-us\\cmudict-en-us.dict");
 
     ps_decoder_t *ps = ps_init(config);
 

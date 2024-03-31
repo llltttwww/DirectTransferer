@@ -8,25 +8,28 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
+    ui->btnStop->setEnabled(false);
     connect(ui->btnStart,SIGNAL(clicked()),this,SLOT(do_actStart_clicked()));
     thread=new transThread;
-    this->setWindowIcon(QIcon("E:\\Qt projects\\DirectTransfer\\resources\\image.jpg"));
+    this->setWindowIcon(QIcon("..\\DirectTransfer\\resources\\image.jpg"));
     // connect(this,&Widget::startran,[=](){ui->textResult->setPlainText("转换中，请等待"); });
-    connect(this,&Widget::startran,[=](){QMetaObject::invokeMethod(ui->textResult,"setPlainText",Qt::QueuedConnection,Q_ARG(QString,tr("转换中，请等待")));ui->btnStart->setEnabled(false);ui->btnChooseFile->setEnabled(false);ui->btnSave->setEnabled(false);ui->filePathEdit->setEnabled(false);ui->textResult->setEnabled(false);});
+    connect(this,&Widget::startran,[=](){QMetaObject::invokeMethod(ui->textResult,"setPlainText",Qt::QueuedConnection,Q_ARG(QString,tr("转换中，请等待")));ui->btnStart->setEnabled(false);ui->btnChooseFile->setEnabled(false);ui->btnSave->setEnabled(false);ui->filePathEdit->setEnabled(false);ui->textResult->setEnabled(false);ui->btnStop->setEnabled(true);});
     connect(this,&Widget::startran,[=](){thread->rcv_str(ui->filePathEdit->text().toStdString());thread->start();});
     // connect(thread,&transThread::send_text,[=](std::string text){qDebug()<<"textrcvd\n";ui->textResult->setPlainText(QString::fromLocal8Bit(text));});
     connect(thread,&transThread::send_text,[=](std::string text){QMetaObject::invokeMethod(ui->textResult,"setPlainText",Qt::QueuedConnection,QString::fromLocal8Bit(text));QMetaObject::invokeMethod(ui->btnStart,"setEnabled",Qt::QueuedConnection,true);
                         QMetaObject::invokeMethod(ui->btnChooseFile,"setEnabled",Qt::QueuedConnection,true);
 QMetaObject::invokeMethod(ui->btnSave,"setEnabled",Qt::QueuedConnection,true);
                         QMetaObject::invokeMethod(ui->filePathEdit,"setEnabled",Qt::QueuedConnection,true);
-QMetaObject::invokeMethod(ui->textResult,"setEnabled",Qt::QueuedConnection,true);});
+QMetaObject::invokeMethod(ui->textResult,"setEnabled",Qt::QueuedConnection,true);
+    QMetaObject::invokeMethod(ui->btnStop,"setEnabled",Qt::QueuedConnection,false);});
     connect(this,&Widget::threadstop,[=](){QMetaObject::invokeMethod(ui->textResult,"setPlainText",Qt::QueuedConnection,Q_ARG(QString,tr("转换已中止")));
 QMetaObject::invokeMethod(ui->btnStart,"setEnabled",Qt::QueuedConnection,true);
                         QMetaObject::invokeMethod(ui->btnChooseFile,"setEnabled",Qt::QueuedConnection,true);
 QMetaObject::invokeMethod(ui->btnSave,"setEnabled",Qt::QueuedConnection,true);
                         QMetaObject::invokeMethod(ui->filePathEdit,"setEnabled",Qt::QueuedConnection,true);
-QMetaObject::invokeMethod(ui->textResult,"setEnabled",Qt::QueuedConnection,true);});
+QMetaObject::invokeMethod(ui->textResult,"setEnabled",Qt::QueuedConnection,true);
+    QMetaObject::invokeMethod(ui->btnStop,"setEnabled",Qt::QueuedConnection,false);});
+
 }
 Widget::~Widget()
 {

@@ -11,7 +11,7 @@ TDialogLogin::TDialogLogin(QWidget *parent)
     this->setWindowFlags(Qt::SplashScreen);
     QApplication::setOrganizationName("WWB-Qt");
     QApplication::setApplicationName("voice transferer");
-    setStyleSheet("E:\\Qt projects\\DirectTransfer\\resources\\login.jpg");
+    setStyleSheet("..\\DirectTransfer\\resources\\login.jpg");
     timer->setInterval(1000);
     timer->start();
     connect(timer,&QTimer::timeout,[=](){this->accept();timer->stop();});
@@ -53,7 +53,7 @@ void TDialogLogin::mouseReleaseEvent(QMouseEvent* event)
 void TDialogLogin::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
-    painter.drawPixmap(rect(),QPixmap("E:\\Qt projects\\DirectTransfer\\resources\\image.jpg"),QRect());
+    painter.drawPixmap(rect(),QPixmap("..\\DirectTransfer\\resources\\image.jpg"),QRect());
 }
 
 
